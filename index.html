@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>飞书应用方法教学课程</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #627086;
+      --line: #dde5ef;
+      --blue: #246bfe;
+      --blue-dark: #1553d1;
+      --cyan: #10a6b8;
+      --green: #18a66a;
+      --orange: #f39a31;
+      --soft: #f4f8fc;
+      --white: #ffffff;
+      --shadow: 0 18px 48px rgba(31, 51, 84, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      background: #fbfdff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, .88);
+      border-bottom: 1px solid rgba(221, 229, 239, .76);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      color: #fff;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(36, 107, 254, .22);
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      background: var(--blue-dark);
+      box-shadow: 0 14px 28px rgba(36, 107, 254, .28);
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 74px 0 76px;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(36, 107, 254, .14), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(16, 166, 184, .14), transparent 30%),
+        linear-gradient(180deg, #eef6ff 0%, #fbfdff 76%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, .98fr);
+      align-items: center;
+      gap: 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 6px 10px;
+      border: 1px solid #cdddf8;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .74);
+      color: #2454a7;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 42px;
+      max-width: 610px;
+    }
+
+    .metric {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .72);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .course-preview {
+      position: relative;
+      min-height: 520px;
+    }
+
+    .screen {
+      overflow: hidden;
+      border: 1px solid #cfdaea;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .screen-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fbff;
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dots i {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #c7d3e3;
+    }
+
+    .screen-title {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .screen-body {
+      display: grid;
+      grid-template-columns: 142px 1fr;
+      min-height: 430px;
+    }
+
+    .sidebar {
+      padding: 18px 12px;
+      border-right: 1px solid var(--line);
+      background: #f7faff;
+    }
+
+    .side-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .side-item.active {
+      color: var(--blue);
+      background: #eaf1ff;
+    }
+
+    .module-panel {
+      padding: 22px;
+    }
+
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .lesson-header h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .tag {
+      display: inline-flex;
+      flex: 0 0 auto;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #e8fbf7;
+      color: #087e68;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .workflow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .workflow-row {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .workflow-row b {
+      font-size: 15px;
+    }
+
+    .workflow-row span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .icon {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 8px;
+      background: #edf4ff;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .status {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .floating-note {
+      position: absolute;
+      right: -8px;
+      bottom: 38px;
+      width: min(280px, 72%);
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 18px 40px rgba(31, 51, 84, .16);
+    }
+
+    .floating-note strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .floating-note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      max-width: 620px;
+      font-size: 34px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 430px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .module-card,
+    .audience-card,
+    .step-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .module-card {
+      padding: 22px;
+    }
+
+    .module-card .number {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .module-card h3 {
+      margin: 10px 0 8px;
+      font-size: 20px;
+    }
+
+    .module-card p,
+    .audience-card p,
+    .step-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .path {
+      background: var(--soft);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      padding: 22px;
+      position: relative;
+    }
+
+    .step-card h3 {
+      margin: 22px 0 8px;
+      font-size: 21px;
+    }
+
+    .step-index {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .audience-card {
+      padding: 24px;
+    }
+
+    .audience-card h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .cta {
+      padding: 74px 0;
+      background: #142033;
+      color: #fff;
+    }
+
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.18;
+    }
+
+    .cta p {
+      max-width: 650px;
+      margin: 14px 0 0;
+      color: #c7d4e6;
+    }
+
+    .cta .button {
+      background: #fff;
+      color: #142033;
+      box-shadow: none;
+    }
+
+    .footer {
+      padding: 26px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .mobile-menu {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 800;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cta-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .course-preview {
+        min-height: auto;
+      }
+
+      .floating-note {
+        position: static;
+        width: auto;
+        margin-top: 14px;
+      }
+
+      .module-grid,
+      .steps,
+      .audience-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .nav-inner {
+        min-height: 62px;
+      }
+
+      .mobile-menu {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        top: 62px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px;
+      }
+
+      .hero {
+        padding: 44px 0 56px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .metrics,
+      .module-grid,
+      .steps,
+      .audience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screen-body {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: flex;
+        overflow-x: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .side-item {
+        flex: 0 0 auto;
+        margin: 0 8px 0 0;
+      }
+
+      .workflow-row {
+        grid-template-columns: 34px 1fr;
+      }
+
+      .status {
+        grid-column: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="飞书应用方法教学课程首页">
+        <span class="brand-mark">飞</span>
+        <span>飞书应用方法课</span>
+      </a>
+      <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">菜单</button>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="#modules">课程内容</a>
+        <a href="#path">学习路径</a>
+        <a href="#audience">适合人群</a>
+        <a class="button" href="#signup">预约试听</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">从会用功能到会设计流程</span>
+          <h1>飞书应用方法教学课程</h1>
+          <p>面向团队管理者、运营、行政、人事和业务骨干，系统学习飞书多维表格、审批、自动化、知识库与项目协作方法，把日常工作流程搭成可复用的数字化应用。</p>
+          <div class="hero-actions">
+            <a class="button" href="#signup">查看课程安排</a>
+            <a class="button secondary" href="#modules">了解学习内容</a>
+          </div>
+          <div class="metrics" aria-label="课程亮点">
+            <div class="metric">
+              <strong>6 周</strong>
+              <span>从基础配置到业务实战</span>
+            </div>
+            <div class="metric">
+              <strong>12 个</strong>
+              <span>可直接复用的应用模板</span>
+            </div>
+            <div class="metric">
+              <strong>1 对 1</strong>
+              <span>结课流程诊断与优化建议</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-preview" aria-label="课程中的飞书应用搭建示例">
+          <div class="screen">
+            <div class="screen-bar">
+              <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <span class="screen-title">业务流程应用实操台</span>
+            </div>
+            <div class="screen-body">
+              <aside class="sidebar">
+                <div class="side-item active">客户看板</div>
+                <div class="side-item">审批流</div>
+                <div class="side-item">自动提醒</div>
+                <div class="side-item">知识库</div>
+              </aside>
+              <div class="module-panel">
+                <div class="lesson-header">
+                  <h2>把线索跟进流程搭成团队应用</h2>
+                  <span class="tag">实战课</span>
+                </div>
+                <div class="workflow">
+                  <div class="workflow-row">
+                    <span class="icon">1</span>
+                    <div>
+                      <b>收集线索</b><br>
+                      <span>表单录入、字段规范、权限分层</span>
+                    </div>
+                    <span class="status">已配置</span>
+                  </div>
+                  <div class="workflow-row">
+                    <span class="icon">2</span>
+                    <div>
+                      <b>自动分配</b><br>
+                      <span>按区域、来源、负责人规则触发</span>
+                    </div>
+                    <span class="status">运行中</span>
+                  </div>
+                  <div class="workflow-row">
+                    <span class="icon">3</span>
+                    <div>
+                      <b>复盘报表</b><br>
+                      <span>看板视图、转化率、异常提醒</span>
+                    </div>
+                    <span class="status">可复用</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-note">
+            <strong>交付结果</strong>
+            <p>每位学员带走一套适合自己团队的飞书应用原型，并掌握后续迭代方法。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modules">
+      <div class="container">
+        <div class="section-head">
+          <h2>课程内容覆盖真实工作场景</h2>
+          <p>围绕客户跟进、项目管理、审批流转、数据统计等常见场景，教你把工作流程整理成表单、看板、提醒和报表，学完就能独立搭建一套可给团队使用的飞书应用。</p>
+        </div>
+        <div class="module-grid">
+          <article class="module-card">
+            <span class="number">模块 01</span>
+            <h3>飞书应用思维</h3>
+            <p>理解从文档协作到流程应用的转变，学会梳理角色、数据和动作。</p>
+          </article>
+          <article class="module-card">
+            <span class="number">模块 02</span>
+            <h3>多维表格实战</h3>
+            <p>字段、视图、筛选、关联、仪表盘和权限设计一次讲透。</p>
+          </article>
+          <article class="module-card">
+            <span class="number">模块 03</span>
+            <h3>自动化与审批</h3>
+            <p>用规则触发通知、分配、状态流转和审批，让流程少靠人盯。</p>
+          </article>
+          <article class="module-card">
+            <span class="number">模块 04</span>
+            <h3>知识库与项目管理</h3>
+            <p>搭建团队知识入口、项目节奏和复盘机制，减少信息散落。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="path" id="path">
+      <div class="container">
+        <div class="section-head">
+          <h2>三步完成从学习到上线</h2>
+          <p>每个阶段都有练习、模板和点评，适合边学边改自己的团队流程。</p>
+        </div>
+        <div class="steps">
+          <article class="step-card">
+            <span class="step-index">1</span>
+            <h3>拆流程</h3>
+            <p>选择一个真实业务场景，画出数据来源、处理规则和协作边界。</p>
+          </article>
+          <article class="step-card">
+            <span class="step-index">2</span>
+            <h3>搭应用</h3>
+            <p>跟随课程完成表格、视图、自动化、通知和权限配置。</p>
+          </article>
+          <article class="step-card">
+            <span class="step-index">3</span>
+            <h3>做迭代</h3>
+            <p>用使用反馈优化字段、报表和提醒节奏，让应用真正跑起来。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="audience">
+      <div class="container">
+        <div class="section-head">
+          <h2>适合想把协作效率落到工具里的团队</h2>
+          <p>无需编程基础，适合已经在用飞书，或准备把内部流程迁到飞书的组织。</p>
+        </div>
+        <div class="audience-grid">
+          <article class="audience-card">
+            <h3>管理者</h3>
+            <p>把目标、任务、汇报和复盘收进统一流程，减少口头追踪。</p>
+          </article>
+          <article class="audience-card">
+            <h3>运营与流程负责人</h3>
+            <p>搭建报名、物资、合同、活动、工单等高频流程应用。</p>
+          </article>
+          <article class="audience-card">
+            <h3>人事与业务骨干</h3>
+            <p>沉淀招聘、入职、培训、客户跟进和销售协同模板。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="signup">
+      <div class="container cta-inner">
+        <div>
+          <h2>预约一次课程试听，带着你的流程问题来。</h2>
+          <p>我们会根据你的团队场景推荐适合的学习路线，并给出一个可先落地的小应用方向。</p>
+        </div>
+        <a class="button" href="mailto:hello@example.com?subject=预约飞书应用方法教学课程试听">立即预约</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 飞书应用方法教学课程. 本页面为课程首页示例，可按你的品牌信息继续替换。</div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector(".mobile-menu");
+    const navLinks = document.querySelector("#navLinks");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.tagName === "A") {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
+</body>
+</html>
