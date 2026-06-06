@@ -390,6 +390,227 @@
       gap: 16px;
     }
 
+    .showcase {
+      background: linear-gradient(180deg, #fbfdff 0%, #f4f8fc 100%);
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .showcase-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 14px 32px rgba(31, 51, 84, .08);
+    }
+
+    .showcase-visual {
+      position: relative;
+      min-height: 210px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(36, 107, 254, .1), rgba(16, 166, 184, .08)),
+        #f8fbff;
+    }
+
+    .showcase-visual::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(207, 218, 234, .88);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .76);
+    }
+
+    .showcase-card figcaption {
+      padding: 18px;
+    }
+
+    .showcase-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .showcase-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .visual-item {
+      position: relative;
+      z-index: 1;
+    }
+
+    .classroom .visual-item {
+      display: grid;
+      gap: 10px;
+    }
+
+    .teacher-line {
+      width: 66%;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    .board {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #172033;
+    }
+
+    .board span {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .74);
+    }
+
+    .board span:nth-child(2) {
+      width: 76%;
+      background: rgba(16, 166, 184, .9);
+    }
+
+    .people-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .people-row span {
+      height: 38px;
+      border-radius: 8px 8px 4px 4px;
+      background: #dbe7fb;
+    }
+
+    .practice .visual-item {
+      display: grid;
+      gap: 10px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 6px;
+    }
+
+    .toolbar span {
+      width: 32px;
+      height: 10px;
+      border-radius: 999px;
+      background: #cdddf8;
+    }
+
+    .table-demo {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr .8fr;
+      gap: 7px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .table-demo span {
+      height: 22px;
+      border-radius: 5px;
+      background: #edf4ff;
+    }
+
+    .table-demo span:nth-child(3n) {
+      background: #e8fbf7;
+    }
+
+    .automation .visual-item {
+      display: grid;
+      grid-template-columns: 1fr 32px 1fr;
+      align-items: center;
+      gap: 8px;
+      min-height: 170px;
+    }
+
+    .flow-box {
+      padding: 14px 10px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px var(--line);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .flow-arrow {
+      height: 2px;
+      background: var(--blue);
+    }
+
+    .flow-arrow::after {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      margin: -3px 0 0 auto;
+      border-top: 2px solid var(--blue);
+      border-right: 2px solid var(--blue);
+      transform: rotate(45deg);
+    }
+
+    .review .visual-item {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 12px;
+      align-items: end;
+      min-height: 170px;
+    }
+
+    .chart {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 128px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .chart span {
+      flex: 1;
+      border-radius: 5px 5px 0 0;
+      background: var(--cyan);
+    }
+
+    .chart span:nth-child(1) {
+      height: 42%;
+    }
+
+    .chart span:nth-child(2) {
+      height: 68%;
+      background: var(--blue);
+    }
+
+    .chart span:nth-child(3) {
+      height: 88%;
+      background: var(--green);
+    }
+
+    .comment-stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .comment-stack span {
+      height: 34px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
     .module-card,
     .audience-card,
     .step-card {
@@ -531,6 +752,7 @@
       }
 
       .module-grid,
+      .showcase-grid,
       .steps,
       .audience-grid {
         grid-template-columns: 1fr 1fr;
@@ -596,6 +818,7 @@
 
       .metrics,
       .module-grid,
+      .showcase-grid,
       .steps,
       .audience-grid {
         grid-template-columns: 1fr;
@@ -637,6 +860,7 @@
       <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">菜单</button>
       <nav class="nav-links" id="navLinks" aria-label="主导航">
         <a href="#modules">课程内容</a>
+        <a href="#showcase">教学展示</a>
         <a href="#path">学习路径</a>
         <a href="#audience">适合人群</a>
         <a class="button" href="#signup">预约试听</a>
@@ -753,6 +977,101 @@
             <h3>知识库与项目管理</h3>
             <p>搭建团队知识入口、项目节奏和复盘机制，减少信息散落。</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+      <div class="container">
+        <div class="section-head">
+          <h2>教学展示图片呈现学习过程</h2>
+          <p>用 4 张场景化展示图说明课堂讲解、跟练搭建、自动化配置和课后复盘，让学员提前看到课程中的关键训练环节。</p>
+        </div>
+        <div class="showcase-grid" aria-label="教学展示图片">
+          <figure class="showcase-card">
+            <div class="showcase-visual classroom" role="img" aria-label="老师讲解飞书应用流程拆解">
+              <div class="visual-item">
+                <span class="teacher-line"></span>
+                <div class="board">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="people-row" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <h3>课堂方法讲解</h3>
+              <p>先把业务目标、角色分工和流程节点讲清楚，再进入工具配置。</p>
+            </figcaption>
+          </figure>
+          <figure class="showcase-card">
+            <div class="showcase-visual practice" role="img" aria-label="学员跟练多维表格搭建">
+              <div class="visual-item">
+                <div class="toolbar" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="table-demo">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <h3>多维表格跟练</h3>
+              <p>现场搭建字段、视图、筛选和权限，形成可复用的数据底座。</p>
+            </figcaption>
+          </figure>
+          <figure class="showcase-card">
+            <div class="showcase-visual automation" role="img" aria-label="自动化规则和审批流程配置">
+              <div class="visual-item">
+                <div class="flow-box">表单提交</div>
+                <div class="flow-arrow" aria-hidden="true"></div>
+                <div class="flow-box">自动提醒</div>
+                <div class="flow-box">状态更新</div>
+                <div class="flow-arrow" aria-hidden="true"></div>
+                <div class="flow-box">审批归档</div>
+              </div>
+            </div>
+            <figcaption>
+              <h3>自动化流程演示</h3>
+              <p>把触发条件、消息通知、审批流转和归档规则串成完整闭环。</p>
+            </figcaption>
+          </figure>
+          <figure class="showcase-card">
+            <div class="showcase-visual review" role="img" aria-label="课程复盘报表和老师点评">
+              <div class="visual-item">
+                <div class="chart" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="comment-stack" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <h3>作业复盘点评</h3>
+              <p>根据学员作品检查字段设计、报表口径和团队上线风险。</p>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
